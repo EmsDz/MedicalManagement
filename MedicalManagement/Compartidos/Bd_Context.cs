@@ -26,7 +26,7 @@ namespace MedicalManagement.Compartidos
             cmd = cmd.Replace("delete", "").Replace("truncate", "").Replace("drop", "").Replace("update", "");
             // si la conexion es null la inicia
             if (conexion == null)
-                conexion = new SqlConnection(Properties.Settings.Default.BdConex.ToString());
+                conexion = new SqlConnection(Properties.Settings.Default.BdConexL.ToString());
 
             // si la conexion esta cerrada la abre
             if (conexion.State == ConnectionState.Closed)

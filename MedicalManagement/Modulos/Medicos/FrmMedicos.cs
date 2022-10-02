@@ -30,9 +30,6 @@ namespace MedicalManagement.Modulos.Medicos
             data_gv.DataSource = Compartidos.Bd_Context.Fun_ejecutarScript(scrip, false);
         }
 
-
-
-
         public bool validationData()
         {
             bool success = true; ;
@@ -45,7 +42,6 @@ namespace MedicalManagement.Modulos.Medicos
             }
             return success;
         }
-
 
         private void picLog_Click(object sender, EventArgs e)
         {
@@ -66,15 +62,11 @@ namespace MedicalManagement.Modulos.Medicos
         {
             if (frmAudit.dgvAuditoria.Rows.Count >= 1)
             {
-
-
                 string sqlQuery = string.Format("Pr_MedicalGetAuditById {0} ",
                 frmAudit.dgvAuditoria.CurrentRow.Cells["InternalId"].Value.ToString());
                 EditMedico(sqlQuery);
                 frmAudit.Close();
-
             }
-
         }
 
         private void PicNewPromo_Click(object sender, EventArgs e)
@@ -90,8 +82,6 @@ namespace MedicalManagement.Modulos.Medicos
 
             // limpia los controels 
             Compartidos.C_Utility.FunClearControls(this);
-
-
 
             // creando el query para consultar 
             DataTable dt = Compartidos.Bd_Context.Fun_ejecutarScript(quertys);
@@ -111,15 +101,13 @@ namespace MedicalManagement.Modulos.Medicos
                 string sqlQuery = string.Format("Pr_MedicalGetDataById {0} ",
                 data_gv.CurrentRow.Cells["Id"].Value.ToString());
                 EditMedico(sqlQuery);
-
             }
         }
-
 
         /// <summary>
         /// Metodo para ingresar o actualizar un paciente
         /// </summary>
-        public void InsertMedico(string id_patinet, string dni, string name, string specialite,  string email, int userId)
+        public void InsertMedico(string id_patinet, string dni, string name, string specialite, string email, int userId)
         {
             try
             {
@@ -149,9 +137,6 @@ namespace MedicalManagement.Modulos.Medicos
 
                 Compartidos.C_Utility.FunClearControls(this);
                 proRefreshDgv();
-
-
-
             }
             catch (Exception ex)
             {
@@ -159,7 +144,6 @@ namespace MedicalManagement.Modulos.Medicos
 
                 this.Menssage = ex.Message.ToString().Trim();
                 this.ColorError = true;
-
             }
             finally
             {
@@ -170,11 +154,10 @@ namespace MedicalManagement.Modulos.Medicos
             }
         }
 
-
         private void PicCreateUser_Click(object sender, EventArgs e)
         {
             if (validationData())
-                InsertMedico(txtId.Text,txtDni.Text,TxtName.Text,txtSpecia.Text,txtEmail.Text, Frm_Lgin.id_User);
+                InsertMedico(txtId.Text, txtDni.Text, TxtName.Text, txtSpecia.Text, txtEmail.Text, Frm_Lgin.id_User);
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
