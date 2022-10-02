@@ -61,8 +61,6 @@ namespace MedicalManagement.Compartidos.Form_
                 this.Menssage = "Producto Creado / Actualizado";
                 this.ColorError = false;
                 result = (id_User > 0) ? true : false;
-
-
             }
             catch (Exception ex)
             {
@@ -96,16 +94,9 @@ namespace MedicalManagement.Compartidos.Form_
                 Program.FrmMain = frmMenu;
                 frmMenu.Show();
                 this.Hide();
-
             }
             else
                 MessageBox.Show("Datos incorrectos");
-
-
-
-
-
-
         }
 
         private void Frm_Lgin_FormClosing(object sender, FormClosingEventArgs e) => Compartidos.C_Utility.Fun_ExitApp();
