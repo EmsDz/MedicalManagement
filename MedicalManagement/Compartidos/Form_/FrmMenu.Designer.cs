@@ -148,7 +148,6 @@
             this.Controls.Add(this.PIcMedicos);
             this.Controls.Add(this.LblPacientes);
             this.Controls.Add(this.LblPromo);
-            this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmMenu";
             this.ShowInTaskbar = true;

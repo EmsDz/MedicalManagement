@@ -14,7 +14,6 @@ namespace MedicalManagement
         public static Form FrmMain = null;
         public static Form FrmReport = null;
         public static String MyMacAdress = null;
-      
 
 
         /// <summary>
@@ -27,7 +26,5 @@ namespace MedicalManagement
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Compartidos.Form_.Frm_Lgin());
         }
-
-  
     }
 }

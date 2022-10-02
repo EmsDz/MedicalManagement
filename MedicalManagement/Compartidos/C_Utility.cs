@@ -51,7 +51,7 @@ namespace MedicalManagement.Compartidos
 
         internal static void Fun_ShowFrmMain(Frm_Root frm_Root)
         {
-            Compartidos.Bd_Context.procCloseConex();
+            Bd_Context.procCloseConex();
             Program.FrmMain.Show();
             frm_Root.Close();
         }
@@ -164,7 +164,7 @@ namespace MedicalManagement.Compartidos
             DataTable dt;
 
             if (Dt == null)
-                dt = Compartidos.Bd_Context.Fun_ejecutarScript(SqlComand, true);           // Ejecutando el query
+                dt = Bd_Context.Fun_ejecutarScript(SqlComand, true);           // Ejecutando el query
             else
                 dt = Dt;
 
@@ -215,7 +215,7 @@ namespace MedicalManagement.Compartidos
                                 byte[] datos = new byte[0];
                                 datos = (byte[])filas[item];
                                 System.IO.MemoryStream ms = new System.IO.MemoryStream(datos);
-                                Pic.Image = System.Drawing.Bitmap.FromStream(ms);
+                                Pic.Image = System.Drawing.Image.FromStream(ms);
                                 Pic.Refresh();
                             }
                         }
