@@ -54,8 +54,14 @@
             this.BtnEdit = new System.Windows.Forms.Button();
             this.data_gv_showitem = new System.Windows.Forms.DataGridView();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.Id_Patient = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Medical_Record = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.picMainLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicBack)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ExportToExcel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicNewPromo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicCreateUser)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -66,16 +72,22 @@
             // 
             // picMainLogo
             // 
-            this.picMainLogo.Location = new System.Drawing.Point(684, 2);
-            this.picMainLogo.Size = new System.Drawing.Size(56, 29);
+            this.picMainLogo.Location = new System.Drawing.Point(727, 8);
+            this.picMainLogo.Size = new System.Drawing.Size(60, 30);
             // 
             // lblMensaje
             // 
-            this.lblMensaje.Location = new System.Drawing.Point(0, 544);
+            this.lblMensaje.Location = new System.Drawing.Point(0, 560);
             // 
             // PicBack
             // 
-            this.PicBack.Location = new System.Drawing.Point(20, 5);
+            this.PicBack.Location = new System.Drawing.Point(12, 8);
+            // 
+            // ExportToExcel
+            // 
+            this.ExportToExcel.Enabled = true;
+            this.ExportToExcel.Location = new System.Drawing.Point(745, 511);
+            this.ExportToExcel.Visible = true;
             // 
             // txtId
             // 
@@ -228,9 +240,10 @@
             // 
             // PicNewPromo
             // 
+            this.PicNewPromo.BackColor = System.Drawing.Color.Aquamarine;
             this.PicNewPromo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PicNewPromo.Image = ((System.Drawing.Image)(resources.GetObject("PicNewPromo.Image")));
-            this.PicNewPromo.Location = new System.Drawing.Point(25, 241);
+            this.PicNewPromo.Location = new System.Drawing.Point(78, 237);
             this.PicNewPromo.Name = "PicNewPromo";
             this.PicNewPromo.Size = new System.Drawing.Size(40, 39);
             this.PicNewPromo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -241,7 +254,7 @@
             // 
             // PicCreateUser
             // 
-            this.PicCreateUser.BackColor = System.Drawing.Color.Transparent;
+            this.PicCreateUser.BackColor = System.Drawing.Color.Aquamarine;
             this.PicCreateUser.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PicCreateUser.Image = ((System.Drawing.Image)(resources.GetObject("PicCreateUser.Image")));
             this.PicCreateUser.Location = new System.Drawing.Point(311, 241);
@@ -259,7 +272,7 @@
             this.groupBox1.Controls.Add(this.PicCreateUser);
             this.groupBox1.Controls.Add(this.PicNewPromo);
             this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold);
-            this.groupBox1.Location = new System.Drawing.Point(25, 37);
+            this.groupBox1.Location = new System.Drawing.Point(25, 44);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(715, 286);
             this.groupBox1.TabIndex = 124;
@@ -268,21 +281,22 @@
             // 
             // picLog
             // 
+            this.picLog.BackColor = System.Drawing.Color.Aquamarine;
             this.picLog.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picLog.Image = ((System.Drawing.Image)(resources.GetObject("picLog.Image")));
-            this.picLog.Location = new System.Drawing.Point(173, 240);
+            this.picLog.Location = new System.Drawing.Point(216, 238);
             this.picLog.Name = "picLog";
             this.picLog.Size = new System.Drawing.Size(39, 38);
             this.picLog.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picLog.TabIndex = 124;
             this.picLog.TabStop = false;
             this.toolTip1.SetToolTip(this.picLog, "Log de modificaciones");
-            this.picLog.Click += new System.EventHandler(this.picLog_Click);
+            this.picLog.Click += new System.EventHandler(this.PicLog_Click);
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.BtnEdit);
-            this.groupBox2.Location = new System.Drawing.Point(25, 327);
+            this.groupBox2.Location = new System.Drawing.Point(25, 333);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(118, 213);
             this.groupBox2.TabIndex = 159;
@@ -311,26 +325,68 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.data_gv_showitem.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.data_gv_showitem.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.data_gv_showitem.BackgroundColor = System.Drawing.Color.PaleTurquoise;
             this.data_gv_showitem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.data_gv_showitem.Location = new System.Drawing.Point(160, 327);
+            this.data_gv_showitem.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Id_Patient,
+            this.cedula,
+            this.nombre,
+            this.Email,
+            this.Medical_Record});
+            this.data_gv_showitem.Location = new System.Drawing.Point(160, 335);
             this.data_gv_showitem.Name = "data_gv_showitem";
             this.data_gv_showitem.ReadOnly = true;
             this.data_gv_showitem.RowHeadersVisible = false;
             this.data_gv_showitem.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.data_gv_showitem.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.data_gv_showitem.Size = new System.Drawing.Size(580, 213);
+            this.data_gv_showitem.Size = new System.Drawing.Size(574, 229);
             this.data_gv_showitem.TabIndex = 158;
             // 
             // toolTip1
             // 
             this.toolTip1.IsBalloon = true;
             // 
+            // Id_Patient
+            // 
+            this.Id_Patient.DataPropertyName = "Id_Patient";
+            this.Id_Patient.HeaderText = "No. Paciente";
+            this.Id_Patient.Name = "Id_Patient";
+            this.Id_Patient.ReadOnly = true;
+            // 
+            // cedula
+            // 
+            this.cedula.DataPropertyName = "cedula";
+            this.cedula.HeaderText = "Cédula";
+            this.cedula.Name = "cedula";
+            this.cedula.ReadOnly = true;
+            // 
+            // nombre
+            // 
+            this.nombre.DataPropertyName = "nombre";
+            this.nombre.HeaderText = "Nombre";
+            this.nombre.Name = "nombre";
+            this.nombre.ReadOnly = true;
+            // 
+            // Email
+            // 
+            this.Email.DataPropertyName = "Email";
+            this.Email.HeaderText = "Correo";
+            this.Email.Name = "Email";
+            this.Email.ReadOnly = true;
+            // 
+            // Medical_Record
+            // 
+            this.Medical_Record.DataPropertyName = "Medical_Record";
+            this.Medical_Record.HeaderText = "Registro Med.";
+            this.Medical_Record.Name = "Medical_Record";
+            this.Medical_Record.ReadOnly = true;
+            // 
             // Frm_Patient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(764, 557);
+            this.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.ClientSize = new System.Drawing.Size(801, 573);
             this.Controls.Add(this.lblRecord);
             this.Controls.Add(this.txtRecord);
             this.Controls.Add(this.lblId);
@@ -353,6 +409,7 @@
             this.Name = "Frm_Patient";
             this.Text = "Pacientes";
             this.Load += new System.EventHandler(this.Frm_Patient_Load);
+            this.Controls.SetChildIndex(this.ExportToExcel, 0);
             this.Controls.SetChildIndex(this.PicBack, 0);
             this.Controls.SetChildIndex(this.groupBox1, 0);
             this.Controls.SetChildIndex(this.data_gv_showitem, 0);
@@ -377,6 +434,7 @@
             this.Controls.SetChildIndex(this.picMainLogo, 0);
             ((System.ComponentModel.ISupportInitialize)(this.picMainLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicBack)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ExportToExcel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicNewPromo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicCreateUser)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -414,5 +472,10 @@
         public System.Windows.Forms.DataGridView data_gv_showitem;
         private System.Windows.Forms.PictureBox picLog;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id_Patient;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cedula;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Email;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Medical_Record;
     }
 }

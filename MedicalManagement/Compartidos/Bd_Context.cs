@@ -39,7 +39,7 @@ namespace MedicalManagement.Compartidos
             SqlDataAdapter ader = new SqlDataAdapter(sqCmd);/// Adaptador de datos
             ader.Fill(data);
 
-            // si se ordena cerrara la conexion  a
+            // si se ordena cerrara la conexion a base de datos
             if (conClose == true)
                 conexion.Close();
 
@@ -49,23 +49,23 @@ namespace MedicalManagement.Compartidos
         /// <summary>
         /// Inicia una transaccion en base de datos
         /// </summary>
-        public static void procBeginTrans() => Fun_ejecutarScript("Begin Tran trx", false);
+        public static void ProcBeginTrans() => Fun_ejecutarScript("Begin Tran trx", false);
 
         /// <summary>
         /// Inicia una transaccion en base de datos
         /// </summary>
-        public static void procCommitTran() => Fun_ejecutarScript("Commit Tran trx", true);
+        public static void ProcCommitTran() => Fun_ejecutarScript("Commit Tran trx", true);
 
         /// <summary>
         /// Inicia una transaccion en base de datos
         /// </summary>
-        public static void procRollbackTrans() => Fun_ejecutarScript("rollback Tran Trx", true);
+        public static void ProcRollbackTrans() => Fun_ejecutarScript("rollback Tran Trx", true);
+        
         /// <summary>
         /// Cierra la conexion a base de datos
         /// </summary>
-        public static void procCloseConex()
+        public static void ProcCloseConex()
         {
-            // si la conexion esta cerrada la abre
             if (conexion != null && conexion.State == ConnectionState.Open)
                 conexion.Close();
         }

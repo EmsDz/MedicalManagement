@@ -10,36 +10,34 @@ using System.Windows.Forms;
 
 namespace MedicalManagement.Compartidos.Form_
 {
-    public partial class FrmAudit : Compartidos.Frm_Root
+    public partial class FrmAudit : Frm_Root
     {
         public FrmAudit()
         {
             InitializeComponent();
         }
 
-        public   string query = "";
+        public string query = "";
 
 
         /// <summary>
         /// Muestra un query en  en un dgv
         /// </summary>
         /// <param name="Query"></param>
-        public void showData()
+        public void ShowData()
         {
             try
             {
-          
-                dgvAuditoria.DataSource = Compartidos.Bd_Context.Fun_ejecutarScript(query, false);
+                dgvAuditoria.DataSource = Bd_Context.Fun_ejecutarScript(query, false);
             }
-            catch (Exception ex )
+            catch (Exception ex)
             {
             }
         }
 
-
         private void FrmAudit_Load(object sender, EventArgs e)
         {
-            showData();
+            ShowData();
         }
     }
 }

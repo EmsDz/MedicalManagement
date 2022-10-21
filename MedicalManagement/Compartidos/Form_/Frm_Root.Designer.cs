@@ -32,12 +32,17 @@
             this.picMainLogo = new System.Windows.Forms.PictureBox();
             this.lblMensaje = new System.Windows.Forms.Label();
             this.PicBack = new System.Windows.Forms.PictureBox();
+            this.ExportToExcel = new System.Windows.Forms.PictureBox();
+            this.SaveExcel = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.picMainLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicBack)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ExportToExcel)).BeginInit();
             this.SuspendLayout();
             // 
             // picMainLogo
             // 
+            this.picMainLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picMainLogo.BackColor = System.Drawing.Color.WhiteSmoke;
             this.picMainLogo.Image = ((System.Drawing.Image)(resources.GetObject("picMainLogo.Image")));
             this.picMainLogo.Location = new System.Drawing.Point(90, 95);
             this.picMainLogo.Name = "picMainLogo";
@@ -68,12 +73,27 @@
             this.PicBack.TabStop = false;
             this.PicBack.Click += new System.EventHandler(this.PicBack_Click);
             // 
+            // ExportToExcel
+            // 
+            this.ExportToExcel.BackColor = System.Drawing.Color.Aquamarine;
+            this.ExportToExcel.Enabled = false;
+            this.ExportToExcel.Image = ((System.Drawing.Image)(resources.GetObject("ExportToExcel.Image")));
+            this.ExportToExcel.Location = new System.Drawing.Point(277, 12);
+            this.ExportToExcel.Name = "ExportToExcel";
+            this.ExportToExcel.Size = new System.Drawing.Size(50, 50);
+            this.ExportToExcel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.ExportToExcel.TabIndex = 4;
+            this.ExportToExcel.TabStop = false;
+            this.ExportToExcel.Visible = false;
+            this.ExportToExcel.Click += new System.EventHandler(this.ExportToExcel_Click);
+            // 
             // Frm_Root
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.PaleTurquoise;
             this.ClientSize = new System.Drawing.Size(340, 450);
+            this.Controls.Add(this.ExportToExcel);
             this.Controls.Add(this.PicBack);
             this.Controls.Add(this.lblMensaje);
             this.Controls.Add(this.picMainLogo);
@@ -86,6 +106,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Frm_Root_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.picMainLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicBack)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ExportToExcel)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -96,5 +117,7 @@
         public System.Windows.Forms.PictureBox picMainLogo;
         public System.Windows.Forms.Label lblMensaje;
         public System.Windows.Forms.PictureBox PicBack;
+        public System.Windows.Forms.PictureBox ExportToExcel;
+        private System.Windows.Forms.SaveFileDialog SaveExcel;
     }
 }

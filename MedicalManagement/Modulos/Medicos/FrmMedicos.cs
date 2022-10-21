@@ -13,24 +13,30 @@ using System.Windows.Forms;
 
 namespace MedicalManagement.Modulos.Medicos
 {
-    public partial class FrmMedicos : Compartidos.Frm_Root
+    public partial class FrmMedicos : Frm_Root
     {
         public FrmMedicos()
         {
             InitializeComponent();
+            this.GoToFrmClosing = true;
         }
-        Compartidos.Form_.FrmAudit frmAudit = null;
+        FrmAudit frmAudit = null;
 
         /// <summary>
         /// muestra los pacientes
         /// </summary>
-        public void proRefreshDgv()
+        public void ProRefreshDgv()
         {
             string scrip = "exec Pr_MedicaltGetAll";
-            data_gv.DataSource = Compartidos.Bd_Context.Fun_ejecutarScript(scrip, false);
+            /// No permite que se agregen columnas automaticamente
+            data_gv.AutoGenerateColumns = false;
+            data_gv.DataSource = Bd_Context.Fun_ejecutarScript(scrip, false);
+
+            /// actualiza la var global para cuando se exporte a excel
+            this.dtGridView = data_gv;
         }
 
-        public bool validationData()
+        public bool ValidationData()
         {
             bool success = true; ;
 
@@ -43,7 +49,7 @@ namespace MedicalManagement.Modulos.Medicos
             return success;
         }
 
-        private void picLog_Click(object sender, EventArgs e)
+        private void PicLog_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(txtId.Text.Trim()))
             {
@@ -74,7 +80,7 @@ namespace MedicalManagement.Modulos.Medicos
             Compartidos.C_Utility.FunClearControls(this);
             txtId.Enabled = false;
             this.lblMensaje.Text = "";
-            proRefreshDgv();
+            ProRefreshDgv();
         }
 
         public void EditMedico(string quertys)
@@ -112,7 +118,7 @@ namespace MedicalManagement.Modulos.Medicos
             try
             {
                 ///Abre una transaction a base de datos
-                Bd_Context.procBeginTrans();
+                Bd_Context.ProcBeginTrans();
                 /// sqlComandos  query
                 SqlCommand cmd = null;
                 cmd = new SqlCommand();
@@ -129,18 +135,18 @@ namespace MedicalManagement.Modulos.Medicos
                 cmd.ExecuteNonQuery();
 
                 /// Guardar los cambio si todo sale bien
-                Bd_Context.procCommitTran();
+                Bd_Context.ProcCommitTran();
 
                 this.Menssage = "Medico Creado / Actualizado";
-                lblMensaje.ForeColor = System.Drawing.Color.Black;
+                lblMensaje.ForeColor = Color.Black;
                 this.ColorError = false;
 
                 Compartidos.C_Utility.FunClearControls(this);
-                proRefreshDgv();
+                ProRefreshDgv();
             }
             catch (Exception ex)
             {
-                lblMensaje.ForeColor = System.Drawing.Color.Red;
+                lblMensaje.ForeColor = Color.Red;
 
                 this.Menssage = ex.Message.ToString().Trim();
                 this.ColorError = true;
@@ -149,25 +155,25 @@ namespace MedicalManagement.Modulos.Medicos
             {
                 this.lblMensaje.Text = this.Menssage;
                 ///Cierra la base de datos 
-                Bd_Context.procCloseConex();
+                Bd_Context.ProcCloseConex();
                 // C_Utility.FunShowMessageContainer(this.Menssage, this.ColorError);
             }
         }
 
         private void PicCreateUser_Click(object sender, EventArgs e)
         {
-            if (validationData())
+            if (ValidationData())
                 InsertMedico(txtId.Text, txtDni.Text, TxtName.Text, txtSpecia.Text, txtEmail.Text, Frm_Lgin.id_User);
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
+        private void GroupBox1_Enter(object sender, EventArgs e)
         {
 
         }
 
         private void FrmMedicos_Load(object sender, EventArgs e)
         {
-            proRefreshDgv();
+            ProRefreshDgv();
         }
     }
 }

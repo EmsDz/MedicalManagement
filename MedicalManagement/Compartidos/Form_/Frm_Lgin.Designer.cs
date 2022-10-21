@@ -40,6 +40,7 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.picMainLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicBack)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ExportToExcel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -47,6 +48,8 @@
             // 
             // picMainLogo
             // 
+            this.picMainLogo.BackColor = System.Drawing.Color.White;
+            this.picMainLogo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.picMainLogo.Image = ((System.Drawing.Image)(resources.GetObject("picMainLogo.Image")));
             this.picMainLogo.Location = new System.Drawing.Point(95, 79);
             this.picMainLogo.Size = new System.Drawing.Size(149, 103);
@@ -142,7 +145,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.PaleTurquoise;
             this.ClientSize = new System.Drawing.Size(343, 398);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label1);
@@ -154,6 +157,7 @@
             this.Name = "Frm_Lgin";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Frm_Lgin_FormClosing);
             this.Load += new System.EventHandler(this.Frm_Lgin_Load);
+            this.Controls.SetChildIndex(this.ExportToExcel, 0);
             this.Controls.SetChildIndex(this.PicBack, 0);
             this.Controls.SetChildIndex(this.lblMensaje, 0);
             this.Controls.SetChildIndex(this.picMainLogo, 0);
@@ -166,6 +170,7 @@
             this.Controls.SetChildIndex(this.pictureBox1, 0);
             ((System.ComponentModel.ISupportInitialize)(this.picMainLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicBack)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ExportToExcel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

@@ -38,7 +38,7 @@ namespace MedicalManagement.Compartidos.Form_
             try
             {
                 ///Abre una transaction a base de datos
-                Bd_Context.procBeginTrans();
+                Bd_Context.ProcBeginTrans();
 
                 /// sqlComandos  query
                 SqlCommand cmd = null;
@@ -56,7 +56,7 @@ namespace MedicalManagement.Compartidos.Form_
                 id_User = int.Parse(cmd.Parameters["@LogOn"].Value.ToString());
 
                 /// Guardar los cambio si todo sale bien
-                Bd_Context.procCommitTran();
+                Bd_Context.ProcCommitTran();
 
                 this.Menssage = "Producto Creado / Actualizado";
                 this.ColorError = false;
@@ -71,7 +71,7 @@ namespace MedicalManagement.Compartidos.Form_
             finally
             {
                 ///Cierra la base de datos 
-                Bd_Context.procCloseConex();
+                Bd_Context.ProcCloseConex();
                 // C_Utility.FunShowMessageContainer(this.Menssage, this.ColorError);
             }
 

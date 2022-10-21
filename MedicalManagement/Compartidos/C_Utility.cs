@@ -20,19 +20,17 @@ namespace MedicalManagement.Compartidos
             List<Control> controls = new List<Control>();
             foreach (Control item in Frm.Controls)
             {
-                if (item is Panel)
+                if (item is Panel ObjP)
                 {
-                    Panel Obj = (Panel)item;
-                    foreach (Control Children in Obj.Controls)
+                    foreach (Control Children in ObjP.Controls)
                     {
                         controls.Add(Children);
                     }
                 }
                 // Tab control
-                else if (item is TabControl)
+                else if (item is TabControl ObjTbC)
                 {
-                    TabControl Obj = (TabControl)item;
-                    foreach (Control TbpControl in Obj.Controls)
+                    foreach (Control TbpControl in ObjTbC.Controls)
                     {
                         TabPage tabPage = (TabPage)TbpControl;
                         foreach (Control Childrend in tabPage.Controls)
@@ -51,7 +49,7 @@ namespace MedicalManagement.Compartidos
 
         internal static void Fun_ShowFrmMain(Frm_Root frm_Root)
         {
-            Bd_Context.procCloseConex();
+            Bd_Context.ProcCloseConex();
             Program.FrmMain.Show();
             frm_Root.Close();
         }
@@ -63,8 +61,8 @@ namespace MedicalManagement.Compartidos
         {
             try
             {
-                    Application.Exit();
-                    Application.ExitThread();
+                Application.Exit();
+                Application.ExitThread();
             }
             catch
             {
@@ -79,77 +77,66 @@ namespace MedicalManagement.Compartidos
         {
             foreach (Control item in FunGetAllControl(Frm))
             {
-                if (item is TextBox)
+                if (item is TextBox ObjTb)
                 {
-                    TextBox Obj = (TextBox)item;
-                    Obj.Clear();
+                    ObjTb.Clear();
 
                     if (blocDocentry == true)
                     {
-                        if (Obj.Tag != null && (Obj.Tag.ToString() == "Docentry" || Obj.Tag.ToString() == "Itemcode"))
-                            Obj.Enabled = false;
+                        if (ObjTb.Tag != null && (ObjTb.Tag.ToString() == "Docentry" || ObjTb.Tag.ToString() == "Itemcode"))
+                            ObjTb.Enabled = false;
                     }
                     else
                     {
-                        if (Obj.Tag != null && (Obj.Tag.ToString() == "Docentry" || Obj.Tag.ToString() == "Itemcode"))
-                            Obj.Enabled = true;
-
+                        if (ObjTb.Tag != null && (ObjTb.Tag.ToString() == "Docentry" || ObjTb.Tag.ToString() == "Itemcode"))
+                            ObjTb.Enabled = true;
                     }
                 }
-                else if (item is ComboBox)
+                else if (item is ComboBox ObjCmBox)
                 {
-                    ComboBox Obj = (ComboBox)item;
-                    Obj.SelectedIndex = -1;
+                    ObjCmBox.SelectedIndex = -1;
 
 
                     /// DEfault values
                     /// 
                     if (DefaulValues)
                     {
-                        if (Obj.Name == "CmbItemClasification" || Obj.Name == "CmbItemSeries")
+                        if (ObjCmBox.Name == "CmbItemClasification" || ObjCmBox.Name == "CmbItemSeries")
                         {
-                            if (Obj.Items.Count > 0)
-                                Obj.SelectedIndex = 0;
+                            if (ObjCmBox.Items.Count > 0)
+                                ObjCmBox.SelectedIndex = 0;
                         }
                     }
                 }
-                else if (item is CheckBox)
+                else if (item is CheckBox ObjChBox)
                 {
-                    CheckBox Obj = (CheckBox)item;
-                    Obj.Checked = false;
-
+                    ObjChBox.Checked = false;
 
                     if (DefaulValues)
                     {
                         /// DEfault values
-                        if (Obj.Name == "chkBuyItem" || Obj.Name == "chkIventItem" || Obj.Name == "chkSellItem" || Obj.Name == "ChkValidfor")
-                            Obj.Checked = true;
+                        if (ObjChBox.Name == "chkBuyItem" || ObjChBox.Name == "chkIventItem" || ObjChBox.Name == "chkSellItem" || ObjChBox.Name == "ChkValidfor")
+                            ObjChBox.Checked = true;
                     }
 
                 }
-                else if (item is RadioButton)
+                else if (item is RadioButton ObjR)
                 {
-                    RadioButton Obj = (RadioButton)item;
-                    Obj.Checked = false;
+                    ObjR.Checked = false;
                 }
-                else if (item is NumericUpDown)
+                else if (item is NumericUpDown ObjN)
                 {
-                    NumericUpDown Obj = (NumericUpDown)item;
-                    Obj.Value = Obj.Minimum;
+                    ObjN.Value = ObjN.Minimum;
                 }
                 else if (item is PictureBox)
                 {
                     //PictureBox Obj = (PictureBox)item;
                     //Obj.Image = null;// QuickPoint.Properties.Resources.camera_png;
                 }
-                else if (item is DataGridView)
+                else if (item is DataGridView ObjDtGrdVw)
                 {
                     //DataGridView Obj = (DataGridView)item;
                     //Obj.Rows.Clear();
-
-
-                    DataGridView Obj = (DataGridView)item;
-                  
                 }
             }
         }
@@ -188,27 +175,23 @@ namespace MedicalManagement.Compartidos
                             Contr.Text = filas[item].ToString();
                         }
                         ///ComboBox
-                        else if (Contr is ComboBox)
+                        else if (Contr is ComboBox Cmb)
                         {
-                            ComboBox Cmb = (ComboBox)Contr;
                             Cmb.SelectedIndex = int.Parse(filas[item].ToString());
                         }
                         //CheckBox
-                        else if (Contr is CheckBox)
+                        else if (Contr is CheckBox Ck)
                         {
-                            CheckBox Ck = (CheckBox)Contr;
                             Ck.Checked = bool.Parse(filas[item].ToString());
                         }
                         //RadioButton
-                        else if (Contr is RadioButton)
+                        else if (Contr is RadioButton Rdo)
                         {
-                            RadioButton Rdo = (RadioButton)Contr;
                             Rdo.Checked = bool.Parse(filas[item].ToString());
                         }
                         //Imagen
-                        else if (Contr is PictureBox)
+                        else if (Contr is PictureBox Pic)
                         {
-                            PictureBox Pic = (PictureBox)Contr;
                             //Evitar error cuando la imagen sea null
                             if (filas[item] != null && filas[item].ToString() != "")
                             {
@@ -225,11 +208,11 @@ namespace MedicalManagement.Compartidos
         }
 
         /// <summary>
-        /// /Da un click personalizado en un botton
+        /// Da un click personalizado en un botton
         /// </summary>
         /// <param name="Frm"></param>
         /// <param name="Tagcontrol"></param>
-        public static void FunPerfomClick(Control Frm, string Tagcontrol)
+        public static void FunPerformClick(Control Frm, string Tagcontrol)
         {
             var controls = from Control Ctrl in Frm.Controls
                            where Ctrl.Tag != null && Ctrl.Tag.ToString() == Tagcontrol
@@ -245,7 +228,6 @@ namespace MedicalManagement.Compartidos
                 }
             }
         }
-
 
         /// <summary>
         /// Remueve fila del Dgv
@@ -273,15 +255,15 @@ namespace MedicalManagement.Compartidos
         }
 
         /// <summary>
-        /// /Anade una foto a un picture box
+        /// Anade una foto a un picture box
         /// </summary>
         /// <param name="picture"></param>
         public static void FunAddImgInPictureBx(PictureBox picture)
         {
             try
             {
-                OpenFileDialog openFileDialog = new OpenFileDialog();
-                openFileDialog.FileName = "";
+                OpenFileDialog openFileDialog = new OpenFileDialog { FileName = "" };
+
                 openFileDialog.ShowDialog();
 
                 if (openFileDialog.FileName != null || openFileDialog.FileName.Equals("") == false)
@@ -293,6 +275,5 @@ namespace MedicalManagement.Compartidos
                 MessageBox.Show("No se pudo cargar la imagen: " + ex.Message);
             }
         }
-
     }
 }

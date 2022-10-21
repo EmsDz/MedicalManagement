@@ -18,6 +18,7 @@ namespace MedicalManagement.Modulos.Patient
         public Frm_Patient()
         {
             InitializeComponent();
+            this.GoToFrmClosing = true;
         }
 
 
@@ -26,19 +27,21 @@ namespace MedicalManagement.Modulos.Patient
         /// <summary>
         /// Metodo para ingresar o actualizar un paciente
         /// </summary>
-        public void insertPatient(string id_patinet, string dni, string name, string lastName, string date_birth, string email, string phone, string record, int userId)
+        public void InsertPatient(string id_patinet, string dni, string name, string lastName, string date_birth, string email, string phone, string record, int userId)
         {
             try
             {
 
                 ///Abre una transaction a base de datos
-                Bd_Context.procBeginTrans();
+                Bd_Context.ProcBeginTrans();
                 /// sqlComandos  query
                 SqlCommand cmd = null;
-                cmd = new SqlCommand();
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Connection = Bd_Context.conexion;
-                cmd.CommandText = "Pr_PatientAddOrUpdate";
+                cmd = new SqlCommand
+                {
+                    CommandType = CommandType.StoredProcedure,
+                    Connection = Bd_Context.conexion,
+                    CommandText = "Pr_PatientAddOrUpdate"
+                };
 
                 cmd.Parameters.AddWithValue("@id_Patient", id_patinet);
                 cmd.Parameters.AddWithValue("@Dni", dni);
@@ -52,37 +55,33 @@ namespace MedicalManagement.Modulos.Patient
                 cmd.ExecuteNonQuery();
 
                 /// Guardar los cambio si todo sale bien
-                Bd_Context.procCommitTran();
+                Bd_Context.ProcCommitTran();
 
                 this.Menssage = "Patiente Creado / Actualizado";
-                lblMensaje.ForeColor = System.Drawing.Color.Black;
+                lblMensaje.ForeColor = Color.Black;
                 this.ColorError = false;
 
                 Compartidos.C_Utility.FunClearControls(this);
-                proRefreshDgv();
-
-
-
+                ProRefreshDgv();
             }
             catch (Exception ex)
             {
-                lblMensaje.ForeColor = System.Drawing.Color.Red;
+                lblMensaje.ForeColor = Color.Red;
 
                 this.Menssage = ex.Message.ToString().Trim();
                 this.ColorError = true;
-
             }
             finally
             {
                 this.lblMensaje.Text = this.Menssage;
                 ///Cierra la base de datos 
-                Bd_Context.procCloseConex();
+                Bd_Context.ProcCloseConex();
                 // C_Utility.FunShowMessageContainer(this.Menssage, this.ColorError);
             }
         }
 
 
-        public bool validationData()
+        public bool ValidationData()
         {
             bool success = true; ;
 
@@ -93,57 +92,51 @@ namespace MedicalManagement.Modulos.Patient
                 this.lblMensaje.Text = Menssage.ToString();
             }
 
-
-
-
-
-
             return success;
-
         }
 
         /// <summary>
         /// muestra los pacientes
         /// </summary>
-        public void proRefreshDgv()
+        public void ProRefreshDgv()
         {
             string scrip = "exec Pr_PatientGetAll";
-            data_gv_showitem.DataSource = Compartidos.Bd_Context.Fun_ejecutarScript(scrip, false);
+            /// No permite que se agregen columnas automaticamente
+            data_gv_showitem.AutoGenerateColumns = false;
+            data_gv_showitem.DataSource = Bd_Context.Fun_ejecutarScript(scrip, false);
+            /// actualiza la var global para cuando se exporte a excel
+            this.dtGridView = data_gv_showitem;
         }
+
         private void PicCreateUser_Click(object sender, EventArgs e)
         {
 
-            if (validationData())
-                insertPatient(txtId.Text, txtDni.Text, TxtName.Text, txtLastN.Text, dateTimePicker1.Text,
+            if (ValidationData())
+                InsertPatient(txtId.Text, txtDni.Text, TxtName.Text, txtLastN.Text, dateTimePicker1.Text,
                     txtEmail.Text, txtPhone.Text,
                     txtRecord.Text, Frm_Lgin.id_User);
         }
 
         private void PicNewPromo_Click(object sender, EventArgs e)
         {
-
-
             Compartidos.C_Utility.FunClearControls(this);
             txtId.Enabled = false;
             this.lblMensaje.Text = "";
-            proRefreshDgv();
+            ProRefreshDgv();
         }
 
         private void Frm_Patient_Load(object sender, EventArgs e)
         {
-            proRefreshDgv();
+            ProRefreshDgv();
         }
 
         public void EditPatientId(string quertys)
         {
-
             // limpia los controels 
-            Compartidos.C_Utility.FunClearControls(this);
-
-
+            C_Utility.FunClearControls(this);
 
             // creando el query para consultar 
-            DataTable dt = Compartidos.Bd_Context.Fun_ejecutarScript(quertys);
+            DataTable dt = Bd_Context.Fun_ejecutarScript(quertys);
 
             /// asigancio de datos a controles
             txtId.Text = dt.Rows[0]["Id_Patient"].ToString();
@@ -154,9 +147,8 @@ namespace MedicalManagement.Modulos.Patient
             txtPhone.Text = dt.Rows[0]["Phone"].ToString();
             txtRecord.Text = dt.Rows[0]["Medical_Record"].ToString();
             dateTimePicker1.Text = dt.Rows[0]["date_birth"].ToString();
-
-
         }
+
         private void BtnEdit_Click(object sender, EventArgs e)
         {
             if (data_gv_showitem.Rows.Count >= 1)
@@ -164,11 +156,10 @@ namespace MedicalManagement.Modulos.Patient
                 string sqlQuery = string.Format("Pr_PatientGetDataById {0} ",
                 data_gv_showitem.CurrentRow.Cells["Id_Patient"].Value.ToString());
                 EditPatientId(sqlQuery);
-
             }
         }
 
-        private void picLog_Click(object sender, EventArgs e)
+        private void PicLog_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(txtId.Text.Trim()))
             {
@@ -181,20 +172,16 @@ namespace MedicalManagement.Modulos.Patient
             }
             else
                 MessageBox.Show("Debe Editar el paciente  para mostrar");
-
         }
 
         private void BtnVer_Click(object sender, EventArgs e)
         {
             if (frmAudit.dgvAuditoria.Rows.Count >= 1)
             {
-
-
                 string sqlQuery = string.Format("Pr_PatientGetAuditById {0} ",
                 frmAudit.dgvAuditoria.CurrentRow.Cells["InternalId"].Value.ToString());
                 EditPatientId(sqlQuery);
                 frmAudit.Close();
-
             }
         }
     }

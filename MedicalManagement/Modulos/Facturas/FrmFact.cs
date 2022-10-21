@@ -18,6 +18,7 @@ namespace MedicalManagement.Modulos.Facturas
         public FrmFact()
         {
             InitializeComponent();
+            this.GoToFrmClosing = true;
         }
 
         public string docentrys = "";
@@ -32,20 +33,22 @@ namespace MedicalManagement.Modulos.Facturas
         FrmAudit frmAudit = null;
 
         /// <summary>
-        /// Metodo para ingresar o actualizar un paciente
+        /// Metodo para ingresar o actualizar una factura
         /// </summary>
         public void InsertFac(string Docentry, string id_pacient, string Id_Medico, string @Id_user, string @Note, string @Docdate)
         {
             try
             {
                 ///Abre una transaction a base de datos
-                Bd_Context.procBeginTrans();
+                Bd_Context.ProcBeginTrans();
                 /// sqlComandos  query
                 SqlCommand cmd = null;
-                cmd = new SqlCommand();
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Connection = Bd_Context.conexion;
-                cmd.CommandText = "Pr_FacAddOrUpdate";
+                cmd = new SqlCommand
+                {
+                    CommandType = CommandType.StoredProcedure,
+                    Connection = Bd_Context.conexion,
+                    CommandText = "Pr_FacAddOrUpdate"
+                };
 
                 cmd.Parameters.AddWithValue("@Docentry", Docentry);
                 cmd.Parameters.AddWithValue("@Id_Pacient", id_patients);
@@ -54,16 +57,14 @@ namespace MedicalManagement.Modulos.Facturas
                 cmd.Parameters.AddWithValue("@Note", Note);
                 cmd.Parameters.AddWithValue("@Docdate", Docdate);
 
-
                 cmd.Parameters.Add("@Docnum", SqlDbType.Int);
                 cmd.Parameters.Add("@Internal", SqlDbType.Int);
                 cmd.Parameters["@Internal"].Direction = ParameterDirection.Output;
                 cmd.Parameters["@Docnum"].Direction = ParameterDirection.Output;
                 cmd.ExecuteNonQuery();
 
-
-                string InternalDoc = (cmd.Parameters["@Internal"].Value.ToString());
-                docentrys = (cmd.Parameters["@Docnum"].Value.ToString());
+                string InternalDoc = cmd.Parameters["@Internal"].Value.ToString();
+                docentrys = cmd.Parameters["@Docnum"].Value.ToString();
 
                 var sqlQuery = "";
 
@@ -72,43 +73,37 @@ namespace MedicalManagement.Modulos.Facturas
                     /// si es distinct de la ultima fila
                     if (item.Cells[0].RowIndex != data_gv.Rows.Count - 1)
                     {
-
                         sqlQuery = String.Format("Exec Pr_FacDetailsAdd   @Docentry = {0},  @Concep = '{1}',@quantity = {2}, @Price = {3} ",
                             docentrys,
                             item.Cells["colConcept"].Value.ToString(),
                             item.Cells["colQty_"].Value.ToString(),
                             item.Cells["colPric"].Value.ToString());
 
-
-                        Compartidos.Bd_Context.Fun_ejecutarScript(sqlQuery, false);
+                        Bd_Context.Fun_ejecutarScript(sqlQuery, false);
                     }
                 }
 
                 /// Guardar los cambio si todo sale bien
-                Bd_Context.procCommitTran();
+                Bd_Context.ProcCommitTran();
 
-                this.Menssage = "Medico Creado / Actualizado";
-                lblMensaje.ForeColor = System.Drawing.Color.Black;
+                this.Menssage = "Factura Creado / Actualizado";
+                lblMensaje.ForeColor = Color.Black;
                 this.ColorError = false;
 
-                newDoc();
-
-
-
+                NewDoc();
             }
             catch (Exception ex)
             {
-                lblMensaje.ForeColor = System.Drawing.Color.Red;
+                lblMensaje.ForeColor = Color.Red;
 
                 this.Menssage = ex.Message.ToString().Trim();
                 this.ColorError = true;
-
             }
             finally
             {
                 this.lblMensaje.Text = this.Menssage;
                 ///Cierra la base de datos 
-                Bd_Context.procCloseConex();
+                Bd_Context.ProcCloseConex();
                 // C_Utility.FunShowMessageContainer(this.Menssage, this.ColorError);
             }
         }
@@ -116,17 +111,19 @@ namespace MedicalManagement.Modulos.Facturas
         /// <summary>
         /// muestra los pacientes
         /// </summary>
-        public void proRefreshDgv()
+        public void ProRefreshDgv()
         {
             string scrip = "exec Pr_FActGetAll";
-            dataFac.DataSource = Compartidos.Bd_Context.Fun_ejecutarScript(scrip, false);
+            /// No permite que se agregen columnas automaticamente
+            dataFac.AutoGenerateColumns = false;
+            dataFac.DataSource = Bd_Context.Fun_ejecutarScript(scrip, false);
+            /// actualiza la var global para cuando se exporte a excel
+            this.dtGridView = dataFac;
         }
 
-        public bool validationData()
+        public bool ValidationData()
         {
             bool success = true; ;
-
-
 
             try
             {
@@ -137,54 +134,43 @@ namespace MedicalManagement.Modulos.Facturas
                     this.lblMensaje.Text = Menssage.ToString();
                 }
 
-
                 foreach (DataGridViewRow fila in data_gv.Rows)
                 {
                     fila.Cells["colConcept"].Value = (fila.Cells["colConcept"].Value == null || fila.Cells["colConcept"].Value.ToString() == "") ? "Consulta" : fila.Cells["colConcept"].Value;
-                    fila.Cells["colQty_"].Value = (fila.Cells["colQty_"].Value == null) ? "1" : fila.Cells["colQty_"].Value;
-                    fila.Cells["colPric"].Value = (fila.Cells["colPric"].Value == null) ? "1000" : fila.Cells["colPric"].Value;
+                    fila.Cells["colQty_"].Value = fila.Cells["colQty_"].Value ?? "1";
+                    fila.Cells["colPric"].Value = fila.Cells["colPric"].Value ?? "1000";
                 }
-
-
-
             }
             catch (Exception)
             {
-
-              
             }
-         
-
 
             return success;
         }
 
-
-
-
-        private void data_gv_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void Data_gv_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
 
         private void PicCreateUser_Click(object sender, EventArgs e)
         {
-            if (validationData())
+            if (ValidationData())
                 InsertFac(txtDocnum.Text, txtId.Text, txtMedi.Text, Frm_Lgin.id_User.ToString(), txtNote.Text, dateTimePicker1.Text);
         }
 
         private void FrmFact_Load(object sender, EventArgs e)
         {
-            proRefreshDgv();
+            ProRefreshDgv();
         }
 
-        public void newDoc()
+        public void NewDoc()
         {
             C_Utility.FunClearControls(this);
             data_gv.Rows.Clear();
 
 
-            proRefreshDgv();
+            ProRefreshDgv();
             dateTimePicker1.Text = DateTime.Now.ToString();
 
             id_medicals = 0;
@@ -194,24 +180,19 @@ namespace MedicalManagement.Modulos.Facturas
 
         private void PicNewPromo_Click(object sender, EventArgs e)
         {
-            newDoc();
-
-
+            NewDoc();
         }
-
 
         public void EditFac(string quertys)
         {
-
             // limpia los controels 
-            Compartidos.C_Utility.FunClearControls(this);
-
-
+            C_Utility.FunClearControls(this);
 
             // creando el query para consultar 
-            DataTable dt = Compartidos.Bd_Context.Fun_ejecutarScript(quertys);
+            DataTable dt = Bd_Context.Fun_ejecutarScript(quertys);
             data_gv.Rows.Clear();
 
+            ///
             /// asigancio de datos a controles
             /// 
             txtMedi.Text = dt.Rows[0]["NameMedico"].ToString();
@@ -224,22 +205,13 @@ namespace MedicalManagement.Modulos.Facturas
             id_medicals = int.Parse(dt.Rows[0]["Id_Medico"].ToString());
 
             foreach (DataRow item in dt.Rows)
-                data_gv.Rows.Add(item["Concept"],
-                                 item["quantity"],
-                                 item["Price"]);
-
-
+                data_gv.Rows.Add(item["Concept"], item["quantity"], item["Price"]);
 
             Fun_ComputePrice();
-
-
-
         }
-
 
         private void BtnEdit_Click(object sender, EventArgs e)
         {
-
             try
             {
                 if (dataFac.Rows.Count >= 1)
@@ -247,18 +219,14 @@ namespace MedicalManagement.Modulos.Facturas
                     string sqlQuery = string.Format("Pr_FacGetDataByDocentry {0} ",
                     dataFac.CurrentRow.Cells["Docentry"].Value.ToString());
                     EditFac(sqlQuery);
-
                 }
             }
             catch (Exception)
             {
-
-           
             }
-          
         }
 
-        private void pic_buscar_promo_Click(object sender, EventArgs e)
+        private void Pic_buscar_promo_Click(object sender, EventArgs e)
         {
             obj = (PictureBox)sender;
 
@@ -267,23 +235,20 @@ namespace MedicalManagement.Modulos.Facturas
             frmPartner.label1.Text = "Seleccion";
             frmPartner.BtnVer.Text = "Seleccionar";
 
-            frmPartner.query = String.Format("EXEC	[Pr_PartnerShow] 		@IsMedical = {0}", obj.Tag.ToString());
+            frmPartner.query = String.Format("EXEC [Pr_PartnerShow] @IsMedical = {0}", obj.Tag.ToString());
             frmPartner.BtnVer.Click += BtnVer_Click;
             frmPartner.ShowDialog();
-
-
         }
 
         private void BtnVer_Click(object sender, EventArgs e)
         {
+            // TODO: simplificar
             if (frmPartner.dgvAuditoria.Rows.Count >= 1)
             {
-
                 if (obj.Tag.ToString() == "0") // paciente
                 {
                     txtId.Text = frmPartner.dgvAuditoria.CurrentRow.Cells["Name"].Value.ToString();
                     id_patients = int.Parse(frmPartner.dgvAuditoria.CurrentRow.Cells["Id"].Value.ToString());
-
                 }
                 else
                 {
@@ -295,53 +260,41 @@ namespace MedicalManagement.Modulos.Facturas
             frmPartner.Close();
         }
 
-        private void picLog_Click(object sender, EventArgs e)
+        private void PicLog_Click(object sender, EventArgs e)
         {
-
             try
             {
                 if (!string.IsNullOrEmpty(txtDocnum.Text.Trim()))
                 {
                     frmAudit = new FrmAudit();
                     {
-                        frmAudit.query = string.Format("EXEC	[Pr_FacGetDataAuditAll]		@Docentry ='{0}' ", txtDocnum.Text.Trim());
+                        frmAudit.query = string.Format("EXEC [Pr_FacGetDataAuditAll] @Docentry ='{0}' ", txtDocnum.Text.Trim());
                         frmAudit.BtnVer.Click += BtnVer_Click1;
                         frmAudit.ShowDialog();
                     }
                 }
                 else
                     MessageBox.Show("Debe editar facturas  para mostrar");
-
             }
             catch (Exception)
             {
-
-             
             }
-
-           
         }
 
         private void BtnVer_Click1(object sender, EventArgs e)
         {
             if (frmAudit.dgvAuditoria.Rows.Count >= 1)
             {
-
-
                 string sqlQuery = string.Format("Pr_FacGetDataAuditByDocentry {0} ",
                 frmAudit.dgvAuditoria.CurrentRow.Cells["Intenal_Id"].Value.ToString());
                 EditFac(sqlQuery);
                 frmAudit.Close();
-
             }
         }
 
-        private void data_gv_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        private void Data_gv_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-
-
             Fun_ComputePrice();
-
         }
 
         /// <summary>
@@ -361,7 +314,6 @@ namespace MedicalManagement.Modulos.Facturas
                     // Si no es null o vacio procede
                     if (item.Cells[1].Value != null && !string.IsNullOrEmpty(item.Cells[1].Value.ToString()))
                     {
-
                         if (item.Cells[2].Value != null && !string.IsNullOrEmpty(item.Cells[2].Value.ToString()))
                         {
                             Qty = item.Cells["colQty_"].Value.ToDecObj(1);
@@ -370,9 +322,7 @@ namespace MedicalManagement.Modulos.Facturas
 
                             item.Cells["colTotal"].Value = Calc;
                             Total += Calc;
-
                         }
-
                     }
                 }
             }
@@ -380,8 +330,5 @@ namespace MedicalManagement.Modulos.Facturas
 
             lblTotal.Text = Total.ToString("00.00");
         }
-
-
-
     }
 }

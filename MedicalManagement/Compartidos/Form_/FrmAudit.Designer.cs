@@ -33,6 +33,7 @@
             this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picMainLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicBack)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ExportToExcel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAuditoria)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,6 +46,10 @@
             // 
             this.PicBack.Location = new System.Drawing.Point(557, 23);
             this.PicBack.Visible = false;
+            // 
+            // ExportToExcel
+            // 
+            this.ExportToExcel.Location = new System.Drawing.Point(743, 392);
             // 
             // BtnVer
             // 
@@ -62,14 +67,14 @@
             this.dgvAuditoria.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvAuditoria.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvAuditoria.BackgroundColor = System.Drawing.Color.White;
+            this.dgvAuditoria.BackgroundColor = System.Drawing.Color.PaleTurquoise;
             this.dgvAuditoria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAuditoria.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
             this.dgvAuditoria.Location = new System.Drawing.Point(37, 80);
             this.dgvAuditoria.Name = "dgvAuditoria";
             this.dgvAuditoria.RowHeadersVisible = false;
             this.dgvAuditoria.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAuditoria.Size = new System.Drawing.Size(760, 317);
+            this.dgvAuditoria.Size = new System.Drawing.Size(760, 306);
             this.dgvAuditoria.TabIndex = 3;
             // 
             // label1
@@ -86,6 +91,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.PaleTurquoise;
             this.ClientSize = new System.Drawing.Size(820, 450);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgvAuditoria);
@@ -94,6 +100,7 @@
             this.Name = "FrmAudit";
             this.Text = "FrmAudit";
             this.Load += new System.EventHandler(this.FrmAudit_Load);
+            this.Controls.SetChildIndex(this.ExportToExcel, 0);
             this.Controls.SetChildIndex(this.PicBack, 0);
             this.Controls.SetChildIndex(this.picMainLogo, 0);
             this.Controls.SetChildIndex(this.lblMensaje, 0);
@@ -102,6 +109,7 @@
             this.Controls.SetChildIndex(this.label1, 0);
             ((System.ComponentModel.ISupportInitialize)(this.picMainLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicBack)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ExportToExcel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAuditoria)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

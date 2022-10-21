@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace MedicalManagement.Compartidos
 {
-   public  static class C_Ext
+    public static class C_Ext
     {
-
-
         /// <summary>
         /// Convierte string a decimal por metodo extension
         /// </summary>
@@ -18,8 +16,8 @@ namespace MedicalManagement.Compartidos
         /// <returns>decimal</returns>
         public static decimal ToDecimal(this string Value, decimal SetValue = 0)
         {
-            decimal outValue = SetValue;
-            outValue = (decimal.TryParse(Value, out outValue) == true) ? outValue : SetValue;
+            //decimal outValue = SetValue;
+            decimal outValue = (decimal.TryParse(Value, out outValue) == true) ? outValue : SetValue;
             return outValue;
         }
 
@@ -31,9 +29,9 @@ namespace MedicalManagement.Compartidos
         /// <returns></returns>
         public static int ToInt(this string Value, int SetValue = 0)
         {
-            int OutValue = SetValue;
+            //int OutValue = SetValue;
             // parseando el valor
-            OutValue = (int.TryParse(Value, out OutValue) == true) ? OutValue : SetValue;
+            int OutValue = (int.TryParse(Value, out OutValue) == true) ? OutValue : SetValue;
             return OutValue;
         }
 
@@ -49,9 +47,9 @@ namespace MedicalManagement.Compartidos
             if (Value is null)
                 Value = "";
 
-            int OutValue = SetValue;
+            //int OutValue = SetValue;
             // parseando el valor
-            OutValue = (int.TryParse(Value.ToString(), out OutValue)) ? OutValue : SetValue;
+            int OutValue = (int.TryParse(Value.ToString(), out OutValue)) ? OutValue : SetValue;
             return OutValue;
         }
 
@@ -66,12 +64,11 @@ namespace MedicalManagement.Compartidos
             if (Value is null)
                 Value = "";
 
-            decimal outValue = SetValue;
+            //decimal outValue = SetValue;
             //parseando el valor
-            outValue = (Decimal.TryParse(Value.ToString(), out outValue)) ? outValue : SetValue;
+            decimal outValue = (Decimal.TryParse(Value.ToString(), out outValue)) ? outValue : SetValue;
             return outValue;
         }
-
 
         /// <summary>
         /// 
@@ -84,9 +81,9 @@ namespace MedicalManagement.Compartidos
             if (Value is null)
                 Value = "";
 
-            Double outValue = SetValue;
+            //Double outValue = SetValue;
             //parseando el valor
-            outValue = (Double.TryParse(Value.ToString(), out outValue)) ? outValue : SetValue;
+            Double outValue = (Double.TryParse(Value.ToString(), out outValue)) ? outValue : SetValue;
             return outValue;
         }
     }
