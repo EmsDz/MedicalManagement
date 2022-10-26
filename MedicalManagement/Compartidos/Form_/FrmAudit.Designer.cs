@@ -39,12 +39,11 @@
             // 
             // picMainLogo
             // 
-            this.picMainLogo.Location = new System.Drawing.Point(719, 12);
-            this.picMainLogo.Size = new System.Drawing.Size(78, 48);
+            this.picMainLogo.Location = new System.Drawing.Point(748, 12);
             // 
             // PicBack
             // 
-            this.PicBack.Location = new System.Drawing.Point(557, 23);
+            this.PicBack.Location = new System.Drawing.Point(10, 12);
             this.PicBack.Visible = false;
             // 
             // ExportToExcel
@@ -81,11 +80,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Bell MT", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(30, 23);
+            this.label1.Location = new System.Drawing.Point(88, 29);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(345, 37);
+            this.label1.Size = new System.Drawing.Size(373, 37);
             this.label1.TabIndex = 4;
-            this.label1.Text = "Historial  Modificacion";
+            this.label1.Text = "Historial  Modificaciones";
             // 
             // FrmAudit
             // 

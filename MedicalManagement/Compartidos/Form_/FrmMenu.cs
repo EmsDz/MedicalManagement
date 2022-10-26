@@ -46,7 +46,7 @@ namespace MedicalManagement.Compartidos.Form_
 
         private void PicGraph_Click(object sender, EventArgs e)
         {
-            var graficos = new Modulos.Graficos.Graficos();
+            var graficos = new Modulos.Graficos.Frm_Graph_Loader();
             graficos.Show();
             this.Hide();
         }

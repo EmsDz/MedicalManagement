@@ -60,8 +60,13 @@
             // 
             // PicBack
             // 
-            this.PicBack.Location = new System.Drawing.Point(24, 25);
+            this.PicBack.Enabled = false;
+            this.PicBack.Location = new System.Drawing.Point(10, 8);
             this.PicBack.Visible = false;
+            // 
+            // ExportToExcel
+            // 
+            this.ExportToExcel.Location = new System.Drawing.Point(12, 44);
             // 
             // btnExe
             // 
@@ -72,7 +77,7 @@
             this.btnExe.TabIndex = 14;
             this.btnExe.Text = "Iniciar";
             this.btnExe.UseVisualStyleBackColor = true;
-            this.btnExe.Click += new System.EventHandler(this.btnExe_Click);
+            this.btnExe.Click += new System.EventHandler(this.BtnExe_Click);
             // 
             // pictureBox2
             // 

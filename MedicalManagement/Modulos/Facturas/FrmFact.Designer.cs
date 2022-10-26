@@ -45,6 +45,13 @@
             this.txtDocnum = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dataFac = new System.Windows.Forms.DataGridView();
+            this.Docentry = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Id_Pacient = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Id_Medico = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Id_user = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Note = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Docdate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CreateDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.BtnEdit = new System.Windows.Forms.Button();
@@ -60,16 +67,9 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.Docentry = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Id_Pacient = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Id_Medico = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Id_user = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Note = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Docdate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CreateDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.ExportToExcel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picMainLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicBack)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ExportToExcel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picFacturas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataFac)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -81,24 +81,23 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
+            // lblMensaje
+            // 
+            this.lblMensaje.Location = new System.Drawing.Point(0, 583);
+            // 
+            // ExportToExcel
+            // 
+            this.ExportToExcel.Location = new System.Drawing.Point(671, 529);
+            // 
             // picMainLogo
             // 
             this.picMainLogo.Location = new System.Drawing.Point(351, 244);
             this.picMainLogo.Size = new System.Drawing.Size(59, 29);
             this.picMainLogo.Visible = false;
             // 
-            // lblMensaje
-            // 
-            this.lblMensaje.Location = new System.Drawing.Point(0, 583);
-            // 
             // PicBack
             // 
-            this.PicBack.Location = new System.Drawing.Point(39, 12);
-            // 
-            // ExportToExcel
-            // 
-            this.ExportToExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ExportToExcel.Location = new System.Drawing.Point(671, 529);
+            this.PicBack.Location = new System.Drawing.Point(11, 12);
             // 
             // picFacturas
             // 
@@ -256,6 +255,56 @@
             this.dataFac.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataFac.Size = new System.Drawing.Size(492, 157);
             this.dataFac.TabIndex = 8;
+            // 
+            // Docentry
+            // 
+            this.Docentry.DataPropertyName = "Docentry";
+            this.Docentry.HeaderText = "No. Registro";
+            this.Docentry.Name = "Docentry";
+            this.Docentry.ReadOnly = true;
+            // 
+            // Id_Pacient
+            // 
+            this.Id_Pacient.DataPropertyName = "Id_Pacient";
+            this.Id_Pacient.HeaderText = "N. Paciente";
+            this.Id_Pacient.Name = "Id_Pacient";
+            this.Id_Pacient.ReadOnly = true;
+            // 
+            // Id_Medico
+            // 
+            this.Id_Medico.DataPropertyName = "Id_Medico";
+            this.Id_Medico.HeaderText = "No. Medico";
+            this.Id_Medico.Name = "Id_Medico";
+            this.Id_Medico.ReadOnly = true;
+            // 
+            // Id_user
+            // 
+            this.Id_user.DataPropertyName = "Id_user";
+            this.Id_user.HeaderText = "No. Usuario";
+            this.Id_user.Name = "Id_user";
+            this.Id_user.ReadOnly = true;
+            this.Id_user.Visible = false;
+            // 
+            // Note
+            // 
+            this.Note.DataPropertyName = "Note";
+            this.Note.HeaderText = "Notas";
+            this.Note.Name = "Note";
+            this.Note.ReadOnly = true;
+            // 
+            // Docdate
+            // 
+            this.Docdate.DataPropertyName = "Docdate";
+            this.Docdate.HeaderText = "Fecha";
+            this.Docdate.Name = "Docdate";
+            this.Docdate.ReadOnly = true;
+            // 
+            // CreateDate
+            // 
+            this.CreateDate.DataPropertyName = "CreateDate";
+            this.CreateDate.HeaderText = "Fecha Reg.";
+            this.CreateDate.Name = "CreateDate";
+            this.CreateDate.ReadOnly = true;
             // 
             // panel1
             // 
@@ -425,56 +474,6 @@
             // 
             this.toolTip1.IsBalloon = true;
             // 
-            // Docentry
-            // 
-            this.Docentry.DataPropertyName = "Docentry";
-            this.Docentry.HeaderText = "No. Registro";
-            this.Docentry.Name = "Docentry";
-            this.Docentry.ReadOnly = true;
-            // 
-            // Id_Pacient
-            // 
-            this.Id_Pacient.DataPropertyName = "Id_Pacient";
-            this.Id_Pacient.HeaderText = "N. Paciente";
-            this.Id_Pacient.Name = "Id_Pacient";
-            this.Id_Pacient.ReadOnly = true;
-            // 
-            // Id_Medico
-            // 
-            this.Id_Medico.DataPropertyName = "Id_Medico";
-            this.Id_Medico.HeaderText = "No. Medico";
-            this.Id_Medico.Name = "Id_Medico";
-            this.Id_Medico.ReadOnly = true;
-            // 
-            // Id_user
-            // 
-            this.Id_user.DataPropertyName = "Id_user";
-            this.Id_user.HeaderText = "No. Usuario";
-            this.Id_user.Name = "Id_user";
-            this.Id_user.ReadOnly = true;
-            this.Id_user.Visible = false;
-            // 
-            // Note
-            // 
-            this.Note.DataPropertyName = "Note";
-            this.Note.HeaderText = "Notas";
-            this.Note.Name = "Note";
-            this.Note.ReadOnly = true;
-            // 
-            // Docdate
-            // 
-            this.Docdate.DataPropertyName = "Docdate";
-            this.Docdate.HeaderText = "Fecha";
-            this.Docdate.Name = "Docdate";
-            this.Docdate.ReadOnly = true;
-            // 
-            // CreateDate
-            // 
-            this.CreateDate.DataPropertyName = "CreateDate";
-            this.CreateDate.HeaderText = "Fecha Reg.";
-            this.CreateDate.Name = "CreateDate";
-            this.CreateDate.ReadOnly = true;
-            // 
             // FrmFact
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -533,9 +532,9 @@
             this.Controls.SetChildIndex(this.pic_buscar_promo, 0);
             this.Controls.SetChildIndex(this.pictureBox1, 0);
             this.Controls.SetChildIndex(this.label5, 0);
+            ((System.ComponentModel.ISupportInitialize)(this.ExportToExcel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picMainLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicBack)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ExportToExcel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picFacturas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataFac)).EndInit();
             this.groupBox2.ResumeLayout(false);

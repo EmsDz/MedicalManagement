@@ -49,8 +49,7 @@
             // picMainLogo
             // 
             this.picMainLogo.Image = ((System.Drawing.Image)(resources.GetObject("picMainLogo.Image")));
-            this.picMainLogo.Location = new System.Drawing.Point(517, 27);
-            this.picMainLogo.Size = new System.Drawing.Size(69, 33);
+            this.picMainLogo.Location = new System.Drawing.Point(582, 12);
             // 
             // lblMensaje
             // 
@@ -58,7 +57,7 @@
             // 
             // PicBack
             // 
-            this.PicBack.Location = new System.Drawing.Point(34, 12);
+            this.PicBack.Location = new System.Drawing.Point(12, 12);
             this.PicBack.Visible = false;
             // 
             // ExportToExcel
@@ -86,11 +85,11 @@
             this.lblFacturas.AutoSize = true;
             this.lblFacturas.BackColor = System.Drawing.Color.Transparent;
             this.lblFacturas.Font = new System.Drawing.Font("Bell MT", 14.25F);
-            this.lblFacturas.Location = new System.Drawing.Point(471, 105);
+            this.lblFacturas.Location = new System.Drawing.Point(439, 105);
             this.lblFacturas.Name = "lblFacturas";
-            this.lblFacturas.Size = new System.Drawing.Size(71, 22);
+            this.lblFacturas.Size = new System.Drawing.Size(144, 22);
             this.lblFacturas.TabIndex = 114;
-            this.lblFacturas.Text = "Factura";
+            this.lblFacturas.Text = "Registro Factura";
             // 
             // picPatient
             // 
@@ -128,7 +127,7 @@
             this.LblPacientes.AutoSize = true;
             this.LblPacientes.BackColor = System.Drawing.Color.Transparent;
             this.LblPacientes.Font = new System.Drawing.Font("Bell MT", 14.25F);
-            this.LblPacientes.Location = new System.Drawing.Point(270, 105);
+            this.LblPacientes.Location = new System.Drawing.Point(272, 105);
             this.LblPacientes.Name = "LblPacientes";
             this.LblPacientes.Size = new System.Drawing.Size(84, 22);
             this.LblPacientes.TabIndex = 109;
@@ -140,7 +139,7 @@
             this.LblPromo.AutoSize = true;
             this.LblPromo.BackColor = System.Drawing.Color.Transparent;
             this.LblPromo.Font = new System.Drawing.Font("Bell MT", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblPromo.Location = new System.Drawing.Point(67, 105);
+            this.LblPromo.Location = new System.Drawing.Point(71, 105);
             this.LblPromo.Name = "LblPromo";
             this.LblPromo.Size = new System.Drawing.Size(76, 22);
             this.LblPromo.TabIndex = 110;
@@ -167,7 +166,7 @@
             this.LblGaficos.AutoSize = true;
             this.LblGaficos.BackColor = System.Drawing.Color.Transparent;
             this.LblGaficos.Font = new System.Drawing.Font("Bell MT", 14.25F);
-            this.LblGaficos.Location = new System.Drawing.Point(273, 291);
+            this.LblGaficos.Location = new System.Drawing.Point(277, 291);
             this.LblGaficos.Name = "LblGaficos";
             this.LblGaficos.Size = new System.Drawing.Size(68, 22);
             this.LblGaficos.TabIndex = 109;

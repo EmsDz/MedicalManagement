@@ -78,7 +78,7 @@ namespace MedicalManagement.Compartidos.Form_
             return result;
         }
 
-        private void btnExe_Click(object sender, EventArgs e)
+        private void BtnExe_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtUser.Text.Trim()) || string.IsNullOrEmpty(txtPass.Text.Trim()))
             {

@@ -28,9 +28,3 @@ namespace MedicalManagement
         }
     }
 }
-
-// TODO: reporte de doc cuantos pacientes, procedi realizados, grafica de cantidad de proc y pacientes
-// TODO: bloquear tablas para que no se editen
-// pacientes atendidos, por fecha
-// procedimientos realizados
-//

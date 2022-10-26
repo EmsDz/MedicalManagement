@@ -44,9 +44,9 @@
             this.picMainLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.picMainLogo.BackColor = System.Drawing.Color.WhiteSmoke;
             this.picMainLogo.Image = ((System.Drawing.Image)(resources.GetObject("picMainLogo.Image")));
-            this.picMainLogo.Location = new System.Drawing.Point(90, 95);
+            this.picMainLogo.Location = new System.Drawing.Point(269, 11);
             this.picMainLogo.Name = "picMainLogo";
-            this.picMainLogo.Size = new System.Drawing.Size(158, 90);
+            this.picMainLogo.Size = new System.Drawing.Size(60, 30);
             this.picMainLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picMainLogo.TabIndex = 0;
             this.picMainLogo.TabStop = false;
@@ -65,9 +65,9 @@
             // 
             this.PicBack.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PicBack.Image = ((System.Drawing.Image)(resources.GetObject("PicBack.Image")));
-            this.PicBack.Location = new System.Drawing.Point(135, 210);
+            this.PicBack.Location = new System.Drawing.Point(12, 11);
             this.PicBack.Name = "PicBack";
-            this.PicBack.Size = new System.Drawing.Size(71, 30);
+            this.PicBack.Size = new System.Drawing.Size(60, 30);
             this.PicBack.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.PicBack.TabIndex = 2;
             this.PicBack.TabStop = false;
@@ -75,10 +75,11 @@
             // 
             // ExportToExcel
             // 
+            this.ExportToExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ExportToExcel.BackColor = System.Drawing.Color.Aquamarine;
             this.ExportToExcel.Enabled = false;
             this.ExportToExcel.Image = ((System.Drawing.Image)(resources.GetObject("ExportToExcel.Image")));
-            this.ExportToExcel.Location = new System.Drawing.Point(277, 12);
+            this.ExportToExcel.Location = new System.Drawing.Point(278, 372);
             this.ExportToExcel.Name = "ExportToExcel";
             this.ExportToExcel.Size = new System.Drawing.Size(50, 50);
             this.ExportToExcel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;

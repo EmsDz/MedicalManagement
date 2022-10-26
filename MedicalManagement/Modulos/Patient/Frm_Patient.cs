@@ -21,17 +21,15 @@ namespace MedicalManagement.Modulos.Patient
             this.GoToFrmClosing = true;
         }
 
-
         FrmAudit frmAudit = null;
 
         /// <summary>
         /// Metodo para ingresar o actualizar un paciente
         /// </summary>
-        public void InsertPatient(string id_patinet, string dni, string name, string lastName, string date_birth, string email, string phone, string record, int userId)
+        public void InsertPatient(string id_patinet, string dni, string name, string lastName, string date_birth, string email, string phone, string record, int userId, int segMed)
         {
             try
             {
-
                 ///Abre una transaction a base de datos
                 Bd_Context.ProcBeginTrans();
                 /// sqlComandos  query
@@ -52,6 +50,7 @@ namespace MedicalManagement.Modulos.Patient
                 cmd.Parameters.AddWithValue("@Phone", phone);
                 cmd.Parameters.AddWithValue("@Medical_Record", record);
                 cmd.Parameters.AddWithValue("@Id_User", userId);
+                cmd.Parameters.AddWithValue("@Seguro_Med", segMed);
                 cmd.ExecuteNonQuery();
 
                 /// Guardar los cambio si todo sale bien
@@ -61,7 +60,7 @@ namespace MedicalManagement.Modulos.Patient
                 lblMensaje.ForeColor = Color.Black;
                 this.ColorError = false;
 
-                Compartidos.C_Utility.FunClearControls(this);
+                C_Utility.FunClearControls(this);
                 ProRefreshDgv();
             }
             catch (Exception ex)
@@ -110,11 +109,12 @@ namespace MedicalManagement.Modulos.Patient
 
         private void PicCreateUser_Click(object sender, EventArgs e)
         {
+            int.TryParse(txtSegMed.Text, out int segMed);
 
             if (ValidationData())
-                InsertPatient(txtId.Text, txtDni.Text, TxtName.Text, txtLastN.Text, dateTimePicker1.Text,
+                InsertPatient(txtId.Text, txtDni.Text, TxtName.Text, txtLastN.Text, dTPickerFchNac.Text,
                     txtEmail.Text, txtPhone.Text,
-                    txtRecord.Text, Frm_Lgin.id_User);
+                    txtRecord.Text, Frm_Lgin.id_User, segMed);
         }
 
         private void PicNewPromo_Click(object sender, EventArgs e)
@@ -146,7 +146,11 @@ namespace MedicalManagement.Modulos.Patient
             txtEmail.Text = dt.Rows[0]["Email"].ToString();
             txtPhone.Text = dt.Rows[0]["Phone"].ToString();
             txtRecord.Text = dt.Rows[0]["Medical_Record"].ToString();
-            dateTimePicker1.Text = dt.Rows[0]["date_birth"].ToString();
+            dTPickerFchNac.Text = dt.Rows[0]["date_birth"].ToString();
+
+            if (dt.Rows[0]["Seguro_Med"].ToString() != "0")
+                txtSegMed.Text = dt.Rows[0]["Seguro_Med"].ToString();
+
         }
 
         private void BtnEdit_Click(object sender, EventArgs e)

@@ -55,8 +55,8 @@
             this.PIcMedicos = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.picMainLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicBack)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picMainLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ExportToExcel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLog)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicCreateUser)).BeginInit();
@@ -67,18 +67,17 @@
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // picMainLogo
-            // 
-            this.picMainLogo.Location = new System.Drawing.Point(666, 9);
-            this.picMainLogo.Size = new System.Drawing.Size(59, 30);
-            // 
             // lblMensaje
             // 
             this.lblMensaje.Location = new System.Drawing.Point(0, 506);
             // 
             // PicBack
             // 
-            this.PicBack.Location = new System.Drawing.Point(12, 13);
+            this.PicBack.Location = new System.Drawing.Point(12, 9);
+            // 
+            // picMainLogo
+            // 
+            this.picMainLogo.Location = new System.Drawing.Point(666, 9);
             // 
             // ExportToExcel
             // 
@@ -414,8 +413,8 @@
             this.Controls.SetChildIndex(this.picMainLogo, 0);
             this.Controls.SetChildIndex(this.lblMensaje, 0);
             this.Controls.SetChildIndex(this.PicBack, 0);
-            ((System.ComponentModel.ISupportInitialize)(this.picMainLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicBack)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picMainLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ExportToExcel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLog)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicCreateUser)).EndInit();
